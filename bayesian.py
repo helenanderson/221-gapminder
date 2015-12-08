@@ -77,9 +77,6 @@ def create_feature_vectors():
       if feature_vectors.get(pair):
         if prevVal != None:
             feature_vectors[pair][0]["HIV " + str(years_ago) + " years ago"] = prevVal
-          #print feature_vectors[pair][0]["HIV -1 year"] 
-    #else:
-      #print pair
   return feature_vectors
 
 #feature_vectors = create_feature_vectors()
