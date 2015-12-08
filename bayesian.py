@@ -82,11 +82,10 @@ def create_feature_vectors():
       #print pair
   return feature_vectors
 
-feature_vectors = create_feature_vectors()
-pickle.dump(feature_vectors, open('featureVectors.p', 'wb'))
-#with open('featureVectors.p') as data_file:    
-#    feature_vectors = pickle.load(data_file)
-
+#feature_vectors = create_feature_vectors()
+#pickle.dump(feature_vectors, open('featureVectors.p', 'wb'))
+with open('featureVectors.p') as data_file:    
+       feature_vectors = pickle.load(data_file)
 
 feature_vectors_arr = []
 hiv_arr = []
@@ -192,6 +191,14 @@ from libpgm.pgmlearner import PGMLearner
 # featureVectorSamples = [v[0] for v in feature_vectors.values()]
 # featureVectorHIV = [v[1] for v in feature_vectors.values()]
 
+feature_vectors_arr = []
+with open('imputed_feature_vectors.p') as data_file:    
+    feature_vectors_arr = pickle.load(data_file)
+
+hiv_arr = []
+for featureVec in feature_vectors_arr:
+  hiv_arr.append(featureVec["HIV rate"])
+
 bayes_partition = partition = int(len(feature_vectors_arr) * .7)
 training_arr = feature_vectors_arr[:partition]
 test_arr = feature_vectors_arr[partition:]
@@ -202,14 +209,11 @@ print "%d elems in training_arr out of %d total" % (len(training_arr), len(featu
 
 vertexMap = {}
 
-# Adding memory
-for i, sample in enumerate(training_arr):
-  sample['Country']
-
 # Imputing missing values by averaging those of other countries.
 # Going forward, we should totally use the linear regression code from above for it!
 condensed_feature_vectors =[]
-mainFeatures = ['HIV 10 years ago', 'indicator total health expenditure perc of GDP.xlsx', 'Indicator_BMI male ASM.xlsx', 'indicator food_consumption.xlsx', 'indicator_estimated incidence infectious tb per 100000.xlsx', 'indicator life_expectancy_at_birth.xlsx', 'indicator gapminder infant_mortality.xlsx']
+mainFeatures = ['indicator total health expenditure perc of GDP.xlsx', 'Indicator_BMI male ASM.xlsx', 'indicator food_consumption.xlsx', 'indicator_estimated incidence infectious tb per 100000.xlsx', 'indicator life_expectancy_at_birth.xlsx', 'indicator gapminder infant_mortality.xlsx']
+
 vertices = set(mainFeatures)
 for i, sample in enumerate(training_arr):
   newSample = {}
@@ -217,32 +221,7 @@ for i, sample in enumerate(training_arr):
   for k in sample.keys():
     if k in vertices:
       newSample[k] = sample[k]
-      if vertexMap.get(k) == None:
-        vertexMap[k] = [sample]
-      else:
-        vertexMap[k].append(sample)
   condensed_feature_vectors.append(newSample)
-
-vertexAverages = {}
-for vertex, samples in vertexMap.iteritems():
-  numerator = 0
-  for sample in samples:
-    numerator += sample[vertex]
-  vertexAverages[vertex] = numerator/len(samples)
-
-for sample in condensed_feature_vectors:
-  for vertex in vertices:
-    if vertex not in sample.keys():
-      # print "Used avg for %s" % vertex
-      sample[vertex] = vertexAverages[vertex]
-
-# print condensed_feature_vectors
-# Testing just 4 vertices for now (takes a really, really long time to use all of them)
-# keysToRemove = list(vertices)[-1:]
-
-# for sample in featureVectorSamples:
-#   for key in keysToRemove:
-#     del sample[key]
 
 # instantiate learner 
 learner = PGMLearner()
