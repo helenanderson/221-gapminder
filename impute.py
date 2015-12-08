@@ -95,24 +95,24 @@ all_imputed_vals.update(hiv)
 
 # Now all the imputing is done, just add back in to feature vector and save in pickle
 
-imputed_feature_vectors = []
+imputed_feature_vectors = {}
 for key, val in feature_vectors.iteritems():
   features, hiv = val
   all_features = {}
   all_features.update(features)
   country = all_features['Country']
   year = all_features['Year']
-  if hiv is not None: 
-    all_features["HIV rate"] = hiv
-  else:
-    all_features["HIV rate"] = all_imputed_vals[(country, year, 'HIV rate')]
   imputed = ['indicator_government share of total health spending.xlsx', 'indicator gapminder infant_mortality.xlsx', 'Indicator_BMI male ASM.xlsx', 'indicator_estimated incidence infectious tb per 100000.xlsx', 'indicator food_consumption.xlsx']
   for name in imputed:
     if (country, year, name) in all_imputed_vals:
       all_features[name] = all_imputed_vals[(country, year, name)]
-  imputed_feature_vectors.append(all_features)
 
-# print imputed_feature_vectors[:10]
+  if hiv is None: 
+    hiv = all_imputed_vals[(country, year, 'HIV rate')]
+
+  imputed_feature_vectors[key] = (all_features, hiv)
+
+print imputed_feature_vectors
 
 pickle.dump(imputed_feature_vectors, open('imputed_feature_vectors.p', 'wb'))
 
