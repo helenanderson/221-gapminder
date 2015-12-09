@@ -52,8 +52,6 @@ def create_feature_vectors():
       if cell.column != 'A':
         year = int(target_ws[cell.column + '1'].value)
         target_values[(country, year)] = float(cell.value) if cell.value is not None else None
-
-
         for yearsForward in range(target_year_interval, target_year_memory_count*target_year_interval+1, target_year_interval):
           if year + yearsForward < end_year:
             previous_target_values[yearsForward][(country, year+yearsForward)] = float(cell.value) if cell.value is not None else None
@@ -98,10 +96,11 @@ def create_feature_vectors():
 
   return feature_vectors
 
-feature_vectors = create_feature_vectors()
-pickle.dump(feature_vectors, open('featureVectors.p', 'wb'))
-#with open('featureVectors.p') as data_file:    
-#    feature_vectors = pickle.load(data_file)
+#feature_vectors = create_feature_vectors()
+#pickle.dump(feature_vectors, open('featureVectors.p', 'wb'))
+feature_vectors = {}
+with open('imputed_feature_vectors.p') as data_file:    
+       feature_vectors = pickle.load(data_file)
 
 
 feature_vectors_arr = []
@@ -168,8 +167,8 @@ predictions = clf.predict(test_data)
 # print clf.coef_
 weights = []
 for i, coef in enumerate(clf.coef_):
-  #if not "Country" in feature_names[i]:
-  weights.append((feature_names[i], coef))
+  if not "Country" in feature_names[i]:
+    weights.append((feature_names[i], coef))
 weights.sort(key=lambda tup: abs(tup[1]))
 print weights
 
@@ -208,6 +207,13 @@ from libpgm.pgmlearner import PGMLearner
 # featureVectorSamples = [v[0] for v in feature_vectors.values()]
 # featureVectorHIV = [v[1] for v in feature_vectors.values()]
 
+<<<<<<< HEAD
+=======
+# feature_vectors_arr = []
+# with open('imputed_feature_vectors.p') as data_file:    
+#     feature_vectors_arr = pickle.load(data_file)
+
+>>>>>>> 50a8891ef3a4b22e07df7b1dfe8f629832e1a8e1
 bayes_partition = partition = int(len(feature_vectors_arr) * .7)
 training_arr = feature_vectors_arr[:partition]
 test_arr = feature_vectors_arr[partition:]
@@ -218,13 +224,6 @@ print "%d elems in training_arr out of %d total" % (len(training_arr), len(featu
 
 vertexMap = {}
 
-# Imputing missing values by averaging those of other countries.
-# Going forward, we should totally use the linear regression code from above for it!
-condensed_feature_vectors =[]
-mainFeatures = ['indicator total health expenditure perc of GDP.xlsx', 'Indicator_BMI male ASM.xlsx', 'indicator food_consumption.xlsx', 'indicator_estimated incidence infectious tb per 100000.xlsx', 'indicator life_expectancy_at_birth.xlsx', 'indicator gapminder infant_mortality.xlsx']
-vertices = set(mainFeatures)
-for i, sample in enumerate(training_arr):
-  newSample = {}
   # del sample['Country'] # This doesn't work well with discrete (and irrelevant) features like names
   # del sample['Year'] # This doesn't work well with discrete (and irrelevant) features like names
 
@@ -239,7 +238,7 @@ vertices = set(mainFeatures)
 for i, sample in enumerate(training_arr):
   newSample = {}
   newSample['HIV'] = hiv_training_arr[i]
-  
+
   for k in sample.keys():
     if k in vertices:
       newSample[k] = sample[k]
@@ -262,6 +261,7 @@ for vertex, samples in vertexMap.iteritems():
     numerator += sample[vertex]
   vertexAverages[vertex] = numerator/len(samples)
 
+
 for region in condensed_feature_vectors_by_region:
   for sample in condensed_feature_vectors_by_region[region]:
     for vertex in vertices:
@@ -276,6 +276,23 @@ for region in condensed_feature_vectors_by_region:
 # for sample in featureVectorSamples:
 #   for key in keysToRemove:
 #     del sample[key]
+
+
+
+############# Only temp removed! ############
+# vertices = set(mainFeatures)
+# for i, sample in enumerate(training_arr):
+#   newSample = {}
+#   newSample['HIV'] = hiv_training_arr[i]
+#   for k in sample.keys():
+#     if k in vertices:
+#       newSample[k] = sample[k]
+#   condensed_feature_vectors.append(newSample)
+################################################
+
+# import pprint
+# pp = pprint.PrettyPrinter(indent=4)
+# pp.pprint(condensed_feature_vectors)
 
 # instantiate learner 
 learner = PGMLearner()
@@ -331,4 +348,5 @@ for region in bayesian_networks_by_region:
   print "Mean absolute error is %f" % mean_absolute_error(hiv_test_arrs_by_region[region], predictions)
   print "Median absolute error is %f" % median_absolute_error(hiv_test_arrs_by_region[region], predictions) 
   print "Mean squared error is %f" % mean_squared_error(hiv_test_arrs_by_region[region], predictions) 
+
 
