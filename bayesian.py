@@ -206,7 +206,7 @@ vertexMap = {}
 # Imputing missing values by averaging those of other countries.
 # Going forward, we should totally use the linear regression code from above for it!
 condensed_feature_vectors =[]
-mainFeatures = ['indicator total health expenditure perc of GDP.xlsx', 'Indicator_BMI male ASM.xlsx', 'indicator food_consumption.xlsx', 'indicator_estimated incidence infectious tb per 100000.xlsx', 'indicator life_expectancy_at_birth.xlsx', 'indicator gapminder infant_mortality.xlsx']
+mainFeatures = ['indicator_government share of total health spending.xlsx', 'Indicator_BMI male ASM.xlsx', 'indicator food_consumption.xlsx', 'indicator_estimated incidence infectious tb per 100000.xlsx', 'indicator gapminder infant_mortality.xlsx']
 
 vertices = set(mainFeatures)
 for i, sample in enumerate(training_arr):
@@ -216,10 +216,6 @@ for i, sample in enumerate(training_arr):
     if k in vertices:
       newSample[k] = sample[k]
   condensed_feature_vectors.append(newSample)
-
-import pprint
-pp = pprint.PrettyPrinter(indent=4)
-pp.pprint(condensed_feature_vectors)
 
 # instantiate learner 
 learner = PGMLearner()
