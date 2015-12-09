@@ -206,8 +206,7 @@ vertexMap = {}
 # Imputing missing values by averaging those of other countries.
 # Going forward, we should totally use the linear regression code from above for it!
 condensed_feature_vectors =[]
-mainFeatures = ['indicator_government share of total health spending.xlsx', 'Indicator_BMI male ASM.xlsx', 'indicator food_consumption.xlsx', 'indicator_estimated incidence infectious tb per 100000.xlsx', 'indicator gapminder infant_mortality.xlsx']
-
+mainFeatures = ['indicator total health expenditure perc of GDP.xlsx', 'Indicator_BMI male ASM.xlsx', 'indicator food_consumption.xlsx', 'indicator_estimated incidence infectious tb per 100000.xlsx', 'indicator life_expectancy_at_birth.xlsx', 'indicator gapminder infant_mortality.xlsx']
 vertices = set(mainFeatures)
 for i, sample in enumerate(training_arr):
   newSample = {}
@@ -215,7 +214,40 @@ for i, sample in enumerate(training_arr):
   for k in sample.keys():
     if k in vertices:
       newSample[k] = sample[k]
+      if vertexMap.get(k) == None:
+        vertexMap[k] = [sample]
+      else:
+        vertexMap[k].append(sample)
   condensed_feature_vectors.append(newSample)
+
+vertexAverages = {}
+for vertex, samples in vertexMap.iteritems():
+  numerator = 0
+  for sample in samples:
+    numerator += sample[vertex]
+  vertexAverages[vertex] = numerator/len(samples)
+
+for sample in condensed_feature_vectors:
+  for vertex in vertices:
+    if vertex not in sample.keys():
+      # print "Used avg for %s" % vertex
+      sample[vertex] = vertexAverages[vertex]
+
+
+############# Only temp removed! ############
+# vertices = set(mainFeatures)
+# for i, sample in enumerate(training_arr):
+#   newSample = {}
+#   newSample['HIV'] = hiv_training_arr[i]
+#   for k in sample.keys():
+#     if k in vertices:
+#       newSample[k] = sample[k]
+#   condensed_feature_vectors.append(newSample)
+################################################
+
+# import pprint
+# pp = pprint.PrettyPrinter(indent=4)
+# pp.pprint(condensed_feature_vectors)
 
 # instantiate learner 
 learner = PGMLearner()
