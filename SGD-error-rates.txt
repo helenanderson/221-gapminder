@@ -1,0 +1,24 @@
+SGD-old: 
+Mean absolute error is 0.352517
+Median absolute error is 0.210410
+Mean squared error is 0.747851
+
+Original Baseline:
+The absolute error is 0.246 standard deviations (.89%).
+The mean squared error is 0.269 standard deviations (which corresponds to .97%)
+
+SGD-timeline-no-imputation:
+Mean absolute error is 0.171157 SDs.  That's 0.742078 percentage points
+Median absolute error is 0.069898.  That's 0.303054 percentage points
+Mean squared error is 0.163958.  That's 0.710862 percentage points
+
+SGD-new-imputation-and-memory:
+Mean absolute error is 0.175713 SDs.  That's 0.752855 percentage points
+Median absolute error is 0.072642.  That's 0.311241 percentage points
+Mean squared error is 0.160387.  That's 0.687190 percentage points
+
+Bayesian:
+With Lat-Long:
+Mean absolute error is 2.092670
+Median absolute error is 1.409213
+Mean squared error is 19.854858

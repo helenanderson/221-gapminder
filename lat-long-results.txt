@@ -1,0 +1,347 @@
+4214 elems in training_arr out of 6020 total
+{
+  "indicator total health expenditure perc of GDP.xlsx": {
+    "mean_base": 6.3914409021545007, 
+    "parents": [], 
+    "children": [
+      "HIV", 
+      "indicator life_expectancy_at_birth.xlsx", 
+      "Indicator_BMI male ASM.xlsx", 
+      "indicator gapminder infant_mortality.xlsx", 
+      "indicator_estimated incidence infectious tb per 100000.xlsx", 
+      "long", 
+      "indicator food_consumption.xlsx", 
+      "lat"
+    ], 
+    "mean_scal": [], 
+    "variance": 6.7996786224191368
+  }, 
+  "HIV": {
+    "mean_base": 1.3190920516239153, 
+    "parents": [
+      "indicator total health expenditure perc of GDP.xlsx"
+    ], 
+    "children": [
+      "indicator life_expectancy_at_birth.xlsx", 
+      "Indicator_BMI male ASM.xlsx", 
+      "indicator gapminder infant_mortality.xlsx", 
+      "indicator_estimated incidence infectious tb per 100000.xlsx", 
+      "long", 
+      "indicator food_consumption.xlsx", 
+      "lat"
+    ], 
+    "mean_scal": [
+      0.074670444080203791
+    ], 
+    "variance": 12.350303182550064
+  }, 
+  "indicator life_expectancy_at_birth.xlsx": {
+    "mean_base": 67.880879856441979, 
+    "parents": [
+      "indicator total health expenditure perc of GDP.xlsx", 
+      "HIV"
+    ], 
+    "children": [
+      "Indicator_BMI male ASM.xlsx", 
+      "indicator gapminder infant_mortality.xlsx", 
+      "indicator_estimated incidence infectious tb per 100000.xlsx", 
+      "long", 
+      "indicator food_consumption.xlsx", 
+      "lat"
+    ], 
+    "mean_scal": [
+      0.52715614001990341, 
+      -1.2084012573269209
+    ], 
+    "variance": 51.801533652605819
+  }, 
+  "Indicator_BMI male ASM.xlsx": {
+    "mean_base": 13.59320777886917, 
+    "parents": [
+      "indicator total health expenditure perc of GDP.xlsx", 
+      "HIV", 
+      "indicator life_expectancy_at_birth.xlsx"
+    ], 
+    "children": [
+      "indicator gapminder infant_mortality.xlsx", 
+      "indicator_estimated incidence infectious tb per 100000.xlsx", 
+      "long", 
+      "indicator food_consumption.xlsx", 
+      "lat"
+    ], 
+    "mean_scal": [
+      0.19659125867202465, 
+      0.012262468787219549, 
+      0.13793553503090461
+    ], 
+    "variance": 2.6756348136828478
+  }, 
+  "indicator gapminder infant_mortality.xlsx": {
+    "mean_base": 316.7367047546025, 
+    "parents": [
+      "indicator total health expenditure perc of GDP.xlsx", 
+      "HIV", 
+      "indicator life_expectancy_at_birth.xlsx", 
+      "Indicator_BMI male ASM.xlsx"
+    ], 
+    "children": [
+      "indicator_estimated incidence infectious tb per 100000.xlsx", 
+      "long", 
+      "indicator food_consumption.xlsx", 
+      "lat"
+    ], 
+    "mean_scal": [
+      -0.021920450572041124, 
+      -1.1643451393691466, 
+      -2.7912543435739772, 
+      -3.5462253999785283
+    ], 
+    "variance": 619.89833135745891
+  }, 
+  "indicator_estimated incidence infectious tb per 100000.xlsx": {
+    "mean_base": 390.29037665813803, 
+    "parents": [
+      "indicator total health expenditure perc of GDP.xlsx", 
+      "HIV", 
+      "indicator life_expectancy_at_birth.xlsx", 
+      "Indicator_BMI male ASM.xlsx", 
+      "indicator gapminder infant_mortality.xlsx"
+    ], 
+    "children": [
+      "long", 
+      "indicator food_consumption.xlsx", 
+      "lat"
+    ], 
+    "mean_scal": [
+      2.0832494472845671, 
+      5.0113538321788464, 
+      -2.4552622116564846, 
+      -7.8665865614395756, 
+      0.060883268921294385
+    ], 
+    "variance": 1602.1323501688826
+  }, 
+  "long": {
+    "mean_base": 175.89724363313064, 
+    "parents": [
+      "indicator total health expenditure perc of GDP.xlsx", 
+      "HIV", 
+      "indicator life_expectancy_at_birth.xlsx", 
+      "Indicator_BMI male ASM.xlsx", 
+      "indicator gapminder infant_mortality.xlsx", 
+      "indicator_estimated incidence infectious tb per 100000.xlsx"
+    ], 
+    "children": [
+      "indicator food_consumption.xlsx", 
+      "lat"
+    ], 
+    "mean_scal": [
+      1.4064734639719065, 
+      -3.5327190422147701, 
+      0.239706918451975, 
+      -7.6864859471080829, 
+      -0.22949856556837875, 
+      0.29577609109445829
+    ], 
+    "variance": 5121.8887579569409
+  }, 
+  "indicator food_consumption.xlsx": {
+    "mean_base": -735.85568650699406, 
+    "parents": [
+      "indicator total health expenditure perc of GDP.xlsx", 
+      "HIV", 
+      "indicator life_expectancy_at_birth.xlsx", 
+      "Indicator_BMI male ASM.xlsx", 
+      "indicator gapminder infant_mortality.xlsx", 
+      "indicator_estimated incidence infectious tb per 100000.xlsx", 
+      "long"
+    ], 
+    "children": [
+      "lat"
+    ], 
+    "mean_scal": [
+      11.751382009883745, 
+      10.539275772648192, 
+      23.120706086896874, 
+      71.377715013799303, 
+      -1.0037281532668989, 
+      -0.42767103655060423, 
+      0.47605207229742091
+    ], 
+    "variance": 103124.43883410601
+  }, 
+  "lat": {
+    "mean_base": 22.239800374399035, 
+    "parents": [
+      "indicator total health expenditure perc of GDP.xlsx", 
+      "HIV", 
+      "indicator life_expectancy_at_birth.xlsx", 
+      "Indicator_BMI male ASM.xlsx", 
+      "indicator gapminder infant_mortality.xlsx", 
+      "indicator_estimated incidence infectious tb per 100000.xlsx", 
+      "long", 
+      "indicator food_consumption.xlsx"
+    ], 
+    "children": [], 
+    "mean_scal": [
+      0.18884459719064098, 
+      -1.8393044361834152, 
+      -0.15516794051596774, 
+      -1.8307888019982841, 
+      -0.055797564462367999, 
+      -0.045087926319144489, 
+      0.032250302330422399, 
+      0.02170080927371313
+    ], 
+    "variance": 368.00709568938606
+  }
+}
+[
+  [
+    "indicator total health expenditure perc of GDP.xlsx", 
+    "HIV"
+  ], 
+  [
+    "indicator total health expenditure perc of GDP.xlsx", 
+    "indicator life_expectancy_at_birth.xlsx"
+  ], 
+  [
+    "indicator total health expenditure perc of GDP.xlsx", 
+    "Indicator_BMI male ASM.xlsx"
+  ], 
+  [
+    "indicator total health expenditure perc of GDP.xlsx", 
+    "indicator gapminder infant_mortality.xlsx"
+  ], 
+  [
+    "indicator total health expenditure perc of GDP.xlsx", 
+    "indicator_estimated incidence infectious tb per 100000.xlsx"
+  ], 
+  [
+    "indicator total health expenditure perc of GDP.xlsx", 
+    "long"
+  ], 
+  [
+    "indicator total health expenditure perc of GDP.xlsx", 
+    "indicator food_consumption.xlsx"
+  ], 
+  [
+    "indicator total health expenditure perc of GDP.xlsx", 
+    "lat"
+  ], 
+  [
+    "HIV", 
+    "indicator life_expectancy_at_birth.xlsx"
+  ], 
+  [
+    "HIV", 
+    "Indicator_BMI male ASM.xlsx"
+  ], 
+  [
+    "HIV", 
+    "indicator gapminder infant_mortality.xlsx"
+  ], 
+  [
+    "HIV", 
+    "indicator_estimated incidence infectious tb per 100000.xlsx"
+  ], 
+  [
+    "HIV", 
+    "long"
+  ], 
+  [
+    "HIV", 
+    "indicator food_consumption.xlsx"
+  ], 
+  [
+    "HIV", 
+    "lat"
+  ], 
+  [
+    "indicator life_expectancy_at_birth.xlsx", 
+    "Indicator_BMI male ASM.xlsx"
+  ], 
+  [
+    "indicator life_expectancy_at_birth.xlsx", 
+    "indicator gapminder infant_mortality.xlsx"
+  ], 
+  [
+    "indicator life_expectancy_at_birth.xlsx", 
+    "indicator_estimated incidence infectious tb per 100000.xlsx"
+  ], 
+  [
+    "indicator life_expectancy_at_birth.xlsx", 
+    "long"
+  ], 
+  [
+    "indicator life_expectancy_at_birth.xlsx", 
+    "indicator food_consumption.xlsx"
+  ], 
+  [
+    "indicator life_expectancy_at_birth.xlsx", 
+    "lat"
+  ], 
+  [
+    "Indicator_BMI male ASM.xlsx", 
+    "indicator gapminder infant_mortality.xlsx"
+  ], 
+  [
+    "Indicator_BMI male ASM.xlsx", 
+    "indicator_estimated incidence infectious tb per 100000.xlsx"
+  ], 
+  [
+    "Indicator_BMI male ASM.xlsx", 
+    "long"
+  ], 
+  [
+    "Indicator_BMI male ASM.xlsx", 
+    "indicator food_consumption.xlsx"
+  ], 
+  [
+    "Indicator_BMI male ASM.xlsx", 
+    "lat"
+  ], 
+  [
+    "indicator gapminder infant_mortality.xlsx", 
+    "indicator_estimated incidence infectious tb per 100000.xlsx"
+  ], 
+  [
+    "indicator gapminder infant_mortality.xlsx", 
+    "long"
+  ], 
+  [
+    "indicator gapminder infant_mortality.xlsx", 
+    "indicator food_consumption.xlsx"
+  ], 
+  [
+    "indicator gapminder infant_mortality.xlsx", 
+    "lat"
+  ], 
+  [
+    "indicator_estimated incidence infectious tb per 100000.xlsx", 
+    "long"
+  ], 
+  [
+    "indicator_estimated incidence infectious tb per 100000.xlsx", 
+    "indicator food_consumption.xlsx"
+  ], 
+  [
+    "indicator_estimated incidence infectious tb per 100000.xlsx", 
+    "lat"
+  ], 
+  [
+    "long", 
+    "indicator food_consumption.xlsx"
+  ], 
+  [
+    "long", 
+    "lat"
+  ], 
+  [
+    "indicator food_consumption.xlsx", 
+    "lat"
+  ]
+]
+Mean absolute error is 2.092670
+Median absolute error is 1.409213
+Mean squared error is 19.854858
