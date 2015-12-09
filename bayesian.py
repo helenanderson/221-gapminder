@@ -81,7 +81,8 @@ def create_feature_vectors():
 
 #feature_vectors = create_feature_vectors()
 #pickle.dump(feature_vectors, open('featureVectors.p', 'wb'))
-with open('featureVectors.p') as data_file:    
+feature_vectors = {}
+with open('imputed_feature_vectors.p') as data_file:    
        feature_vectors = pickle.load(data_file)
 
 feature_vectors_arr = []
@@ -188,13 +189,9 @@ from libpgm.pgmlearner import PGMLearner
 # featureVectorSamples = [v[0] for v in feature_vectors.values()]
 # featureVectorHIV = [v[1] for v in feature_vectors.values()]
 
-feature_vectors_arr = []
-with open('imputed_feature_vectors.p') as data_file:    
-    feature_vectors_arr = pickle.load(data_file)
-
-hiv_arr = []
-for featureVec in feature_vectors_arr:
-  hiv_arr.append(featureVec["HIV rate"])
+# feature_vectors_arr = []
+# with open('imputed_feature_vectors.p') as data_file:    
+#     feature_vectors_arr = pickle.load(data_file)
 
 bayes_partition = partition = int(len(feature_vectors_arr) * .7)
 training_arr = feature_vectors_arr[:partition]
@@ -219,6 +216,10 @@ for i, sample in enumerate(training_arr):
     if k in vertices:
       newSample[k] = sample[k]
   condensed_feature_vectors.append(newSample)
+
+import pprint
+pp = pprint.PrettyPrinter(indent=4)
+pp.pprint(condensed_feature_vectors)
 
 # instantiate learner 
 learner = PGMLearner()
