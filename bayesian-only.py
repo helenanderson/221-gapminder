@@ -11,7 +11,7 @@ import country_mappings
 import impute, create_feature_vectors
 
 # This next line creates the feature vectors from scratch with imputation.  To get rid of imputation, pass in False as the first param.  To use latitude and longitude, pass in True as the second param.
-create_feature_vectors.initialize_vectors(True, True)
+# create_feature_vectors.initialize_vectors(True, True)
 
 feature_vectors = {}
 with open('imputed_feature_vectors.p') as data_file:    
@@ -60,7 +60,7 @@ vertexMap = {}
 # Imputing missing values by averaging those of other countries.
 # Going forward, we should totally use the linear regression code from above for it!
 condensed_feature_vectors =[]
-mainFeatures = ['indicator total health expenditure perc of GDP.xlsx', 'Indicator_BMI male ASM.xlsx', 'indicator food_consumption.xlsx', 'indicator_estimated incidence infectious tb per 100000.xlsx', 'indicator life_expectancy_at_birth.xlsx', 'indicator gapminder infant_mortality.xlsx', 'lat', 'long']
+mainFeatures = ['indicator total health expenditure perc of GDP.xlsx', 'Indicator_BMI male ASM.xlsx', 'indicator food_consumption.xlsx', 'indicator_estimated incidence infectious tb per 100000.xlsx', 'indicator life_expectancy_at_birth.xlsx', 'indicator gapminder infant_mortality.xlsx', 'lat', 'long', 'lat-squared', 'long-squared']
 vertices = set(mainFeatures)
 for i, sample in enumerate(training_arr):
   newSample = {}
