@@ -11,7 +11,7 @@ import country_mappings
 import impute, create_feature_vectors
 
 # This next line creates the feature vectors from scratch with imputation.  To get rid of imputation, pass in False as the first param.  To use latitude and longitude, pass in True as the second param.
-create_feature_vectors.initialize_vectors()
+create_feature_vectors.initialize_vectors(True, True)
 
 feature_vectors = {}
 with open('imputed_feature_vectors.p') as data_file:    
