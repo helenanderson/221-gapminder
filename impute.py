@@ -79,11 +79,12 @@ def impute(target_name):
 
 
 all_imputed_vals = {}
-health_spending = impute('indicator_government share of total health spending.xlsx')
+health_spending = impute('indicator total health expenditure perc of GDP.xlsx')
 infant_mortality = impute('indicator gapminder infant_mortality.xlsx')
 male_bmi = impute('Indicator_BMI male ASM.xlsx')
 tb_incidence = impute('indicator_estimated incidence infectious tb per 100000.xlsx')
 food_consumption = impute('indicator food_consumption.xlsx')
+life_expectancy = impute('indicator life_expectancy_at_birth.xlsx')
 hiv = impute('HIV rate')
 
 all_imputed_vals.update(health_spending)
@@ -91,7 +92,9 @@ all_imputed_vals.update(infant_mortality)
 all_imputed_vals.update(male_bmi)
 all_imputed_vals.update(tb_incidence)
 all_imputed_vals.update(food_consumption)
+all_imputed_vals.update(life_expectancy)
 all_imputed_vals.update(hiv)
+
 
 # Now all the imputing is done, just add back in to feature vector and save in pickle
 
@@ -105,7 +108,7 @@ for key, val in feature_vectors_fresh.iteritems():
   all_features.update(features)
   country = all_features['Country']
   year = all_features['Year']
-  imputed = ['indicator_government share of total health spending.xlsx', 'indicator gapminder infant_mortality.xlsx', 'Indicator_BMI male ASM.xlsx', 'indicator_estimated incidence infectious tb per 100000.xlsx', 'indicator food_consumption.xlsx']
+  imputed = ['indicator total health expenditure perc of GDP.xlsx', 'indicator gapminder infant_mortality.xlsx', 'Indicator_BMI male ASM.xlsx', 'indicator_estimated incidence infectious tb per 100000.xlsx', 'indicator food_consumption.xlsx', 'indicator life_expectancy_at_birth.xlsx']
   for name in imputed:
     if (country, year, name) in all_imputed_vals:
       all_features[name] = all_imputed_vals[(country, year, name)]
