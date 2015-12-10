@@ -109,15 +109,15 @@ def impute_all():
       if name not in all_features: 
         print "Missing %s for %s in %d" % (name, country, year)
 
-    if hiv is None: 
-      hiv = all_imputed_vals[(country, year, 'HIV rate')]
+    # if hiv is None: 
+    #   hiv = all_imputed_vals[(country, year, 'HIV rate')]
 
     imputed_feature_vectors[key] = (all_features, hiv)
 
 
   # print imputed_feature_vectors
 
-  pickle.dump(imputed_feature_vectors, open('imputed_feature_vectors.p', 'wb'))
-  # pickle.dump(imputed_feature_vectors, open('imputed_feature_vectors_no_hiv.p', 'wb'))
+  # pickle.dump(imputed_feature_vectors, open('imputed_feature_vectors.p', 'wb'))
+  pickle.dump(imputed_feature_vectors, open('imputed_feature_vectors_no_hiv.p', 'wb'))
 # print all_imputed_vals
 

@@ -18,11 +18,12 @@ def create_feature_vectors():
   target_values = defaultdict(lambda: None)
   start_year = 1990
   end_year = 2015
+  forecast_years_ahead = 5
 
   # Dictionary to store previous years' values of HIV
   previous_target_values = {} # {2: {()}
   target_year_memory_count = 3
-  target_year_interval = 5
+  target_year_interval = 1
   for years_ago in range(target_year_interval, target_year_memory_count*target_year_interval+1, target_year_interval):
     previous_target_values[years_ago] = defaultdict(lambda: None)
 
@@ -37,7 +38,7 @@ def create_feature_vectors():
     for cell in row:
       if cell.column != 'A':
         year = int(target_ws[cell.column + '1'].value)
-        target_values[(country, year)] = float(cell.value) if cell.value is not None else None
+        target_values[(country, year-forecast_years_ahead)] = float(cell.value) if cell.value is not None else None
         for yearsForward in range(target_year_interval, target_year_memory_count*target_year_interval+1, target_year_interval):
           if year + yearsForward < end_year:
             previous_target_values[yearsForward][(country, year+yearsForward)] = float(cell.value) if cell.value is not None else None
@@ -61,7 +62,7 @@ def create_feature_vectors():
         for cell in row:
           if cell.value != None and cell.column != 'A':
             year = int(ws[cell.column + '1'].value)
-            if year >= start_year:
+            if year >= start_year and year <= end_year - forecast_years_ahead:
               if (country, year) not in feature_vectors.keys():
                 target = target_values[(country, year)]
                 feature_vectors[(country, year)] = ({'Country': country, 'Year': year}, target)
@@ -71,7 +72,7 @@ def create_feature_vectors():
               if feature in featuresToMemoryDict:
                 interval, count = featuresToMemoryDict[feature]
                 for yearsForward in range(interval, count*interval+1, interval):
-                  if year + yearsForward < end_year:
+                  if year + yearsForward < end_year - forecast_years_ahead:
                     feature_vectors[(country, year+yearsForward)][0][feature + " " + str(yearsForward) + " years ago"] = cell.value
 
   for years_ago, years_ago_dict in previous_target_values.iteritems():

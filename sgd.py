@@ -9,7 +9,7 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error, median_abso
 import os, pickle, operator
 import create_feature_vectors
 
-# create_feature_vectors.initialize_vectors()
+create_feature_vectors.initialize_vectors()
 feature_vectors = {}
 
 # Original Feature Vectors

@@ -22,3 +22,8 @@ With Lat-Long:
 Mean absolute error is 2.092670
 Median absolute error is 1.409213
 Mean squared error is 19.854858
+
+FINAL:
+Mean absolute error is 0.082308 SDs.  That's 0.352655 percentage points
+Median absolute error is 0.041085.  That's 0.176034 percentage points
+Mean squared error is 0.034936.  That's 0.149688 percentage points
