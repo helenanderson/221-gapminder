@@ -91,12 +91,12 @@ def create_feature_vectors():
 
   return feature_vectors
 
-def initialize_vectors(shouldImpute=True, useLatLong=False):
+def initialize_vectors(shouldImpute=True, useLatLong=False, includeHiv=True):
 	feature_vectors = create_feature_vectors()
 	if useLatLong:
 		country_mappings.get_mappings(feature_vectors)
 	pickle.dump(feature_vectors, open('featureVectors.p', 'wb'))
 	if shouldImpute:
-		impute.impute_all()
+		impute.impute_all(includeHiv)
 
 

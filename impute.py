@@ -71,7 +71,7 @@ def impute(target_name):
   return imputed_vals
 
 
-def impute_all():
+def impute_all(imputeHiv):
   all_imputed_vals = {}
   health_spending = impute('indicator total health expenditure perc of GDP.xlsx')
   infant_mortality = impute('indicator gapminder infant_mortality.xlsx')
@@ -109,16 +109,27 @@ def impute_all():
       if name not in all_features: 
         print "Missing %s for %s in %d" % (name, country, year)
 
+<<<<<<< HEAD
     # Toggle commenting when toggle no hiv file
     if hiv is None: 
+=======
+    if hiv is None and imputeHiv: 
+>>>>>>> ec3186f70b5af9f36fe1cc7cd86017e8e96d1d00
       hiv = all_imputed_vals[(country, year, 'HIV rate')]
 
     imputed_feature_vectors[key] = (all_features, hiv)
 
 
   # print imputed_feature_vectors
+<<<<<<< HEAD
 
   pickle.dump(imputed_feature_vectors, open('imputed_feature_vectors.p', 'wb'))
   #pickle.dump(imputed_feature_vectors, open('imputed_feature_vectors_no_hiv.p', 'wb'))
+=======
+  if imputeHiv:
+    pickle.dump(imputed_feature_vectors, open('imputed_feature_vectors.p', 'wb'))
+  else:
+    pickle.dump(imputed_feature_vectors, open('imputed_feature_vectors_no_hiv.p', 'wb'))
+>>>>>>> ec3186f70b5af9f36fe1cc7cd86017e8e96d1d00
 # print all_imputed_vals
 
