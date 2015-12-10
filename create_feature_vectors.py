@@ -16,7 +16,7 @@ import impute
 def create_feature_vectors():
   feature_vectors = {}
   target_values = defaultdict(lambda: None)
-  forecast_years_out = 0
+  forecast_years_out = 5
   start_year = 1990
   end_year = 2015
 
@@ -39,9 +39,9 @@ def create_feature_vectors():
     if filename.endswith(".xlsx") and not filename.startswith("~$") and not filename == "indicator hiv estimated prevalence% 15-49.xlsx": 
       print filename
 
-      count += 1
-      if count > 8:
-        break
+      # count += 1
+      # if count > 8:
+      #   break
 
       wb = load_workbook(filename = filename)
 

@@ -54,15 +54,10 @@ def impute(target_name):
   clf.fit(training_data, target_training)
   predictions = clf.predict(test_data)
 
-  # Check error rates
-  test_sd = np.std(target_test)
-  print "Sd is %f" % test_sd
-  print mean_absolute_error(target_test, predictions) * test_sd
-  print median_absolute_error(target_test, predictions) * test_sd
-  print mean_squared_error(target_test, predictions) * test_sd
-  print "Mean absolute error is %f" % mean_absolute_error(target_test, predictions) * test_sd
-  print "Median absolute error is %f" % median_absolute_error(target_test, predictions) * test_sd
-  print "Mean squared error is %f" % mean_squared_error(target_test, predictions) * test_sd
+  # Check error rates, which will be in terms of SD since data is normalized
+  print "Mean absolute error is %f" % mean_absolute_error(target_test, predictions)
+  print "Median absolute error is %f" % median_absolute_error(target_test, predictions)
+  print "Mean squared error is %f" % mean_squared_error(target_test, predictions)
 
   print "----AND FINALLY, THE IMPUTATION---"
   imputations = clf.predict(real_input_data)
@@ -114,6 +109,7 @@ def impute_all():
       if name not in all_features: 
         print "Missing %s for %s in %d" % (name, country, year)
 
+    # Toggle commenting when toggle no hiv file
     if hiv is None: 
       hiv = all_imputed_vals[(country, year, 'HIV rate')]
 
@@ -123,4 +119,6 @@ def impute_all():
   # print imputed_feature_vectors
 
   pickle.dump(imputed_feature_vectors, open('imputed_feature_vectors.p', 'wb'))
+  #pickle.dump(imputed_feature_vectors, open('imputed_feature_vectors_no_hiv.p', 'wb'))
 # print all_imputed_vals
+
