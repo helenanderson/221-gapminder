@@ -7,8 +7,9 @@ from sklearn.externals import joblib
 from sklearn import preprocessing
 from sklearn.metrics import mean_absolute_error, mean_squared_error, median_absolute_error
 import os, pickle, operator
+import create_feature_vectors
 
-
+# create_feature_vectors.initialize_vectors()
 feature_vectors = {}
 
 # Original Feature Vectors
@@ -16,7 +17,7 @@ feature_vectors = {}
 #   feature_vectors = pickle.load(data_file)
 
 # With everything but HIV rate imputed
-with open('imputed_feature_vectors.p') as data_file:    
+with open('imputed_feature_vectors_no_hiv.p') as data_file:    
   feature_vectors = pickle.load(data_file)
 
 feature_vectors_arr = []

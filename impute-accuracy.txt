@@ -1,0 +1,87 @@
+
+
+Imputing for indicator total health expenditure perc of GDP.xlsx
+2127 in training and 912 in test
+Feature test len: 912  target test len: 912
+Sd is 1.000000
+0.370202762514
+0.287023067252
+0.247818544581
+Mean absolute error is 0.370203
+Median absolute error is 0.287023
+Mean squared error is 0.247819
+----AND FINALLY, THE IMPUTATION---
+Imputing for indicator gapminder infant_mortality.xlsx
+3616 in training and 1551 in test
+Feature test len: 1551  target test len: 1551
+Sd is 1.000000
+0.373002410642
+0.178624839437
+12.4628418742
+
+----AND FINALLY, THE IMPUTATION---
+Imputing for Indicator_BMI male ASM.xlsx
+2646 in training and 1135 in test
+Feature test len: 1135  target test len: 1135
+Sd is 1.000000
+0.176508823435
+0.13706709127
+0.0585558747962
+Mean absolute error is 0.176509
+Median absolute error is 0.137067
+Mean squared error is 0.058556
+----AND FINALLY, THE IMPUTATION---
+Imputing for indicator_estimated incidence infectious tb per 100000.xlsx
+2608 in training and 1118 in test
+Feature test len: 1118  target test len: 1118
+Sd is 1.000000
+0.24673175706
+0.164539661281
+0.136432723696
+Mean absolute error is 0.246732
+Median absolute error is 0.164540
+Mean squared error is 0.136433
+----AND FINALLY, THE IMPUTATION---
+Imputing for indicator food_consumption.xlsx
+2177 in training and 933 in test
+Feature test len: 933  target test len: 933
+Sd is 1.000000
+0.30801613768
+0.222244095183
+0.3538516185
+Mean absolute error is 0.308016
+Median absolute error is 0.222244
+Mean squared error is 0.353852
+----AND FINALLY, THE IMPUTATION---
+Imputing for indicator life_expectancy_at_birth.xlsx
+3606 in training and 1546 in test
+Feature test len: 1546  target test len: 1546
+Sd is 1.000000
+0.147794568836
+0.104892100013
+0.0523178724517
+Mean absolute error is 0.147795
+Median absolute error is 0.104892
+Mean squared error is 0.052318
+----AND FINALLY, THE IMPUTATION---
+Imputing for HIV rate
+2248 in training and 964 in test
+Feature test len: 964  target test len: 964
+Sd is 1.000000
+0.190972911644
+0.0970959053179
+0.16811941363
+Mean absolute error is 0.190973
+Median absolute error is 0.097096
+Mean squared error is 0.168119
+----AND FINALLY, THE IMPUTATION---
+
+absolute_errors = [0.370202762514,0.373002410642,0.176508823435,0.24673175706,0.30801613768,0.147794568836,0.190972911644]
+squared_error = [0.247818544581, 12.4628418742, 0.0585558747962, 0.136432723696, 0.3538516185, 0.0523178724517, 0.16811941363]
+
+>>> absolute_errors = [0.370202762514,0.373002410642,0.176508823435,0.24673175706,0.30801613768,0.147794568836,0.190972911644]
+>>> squared_error = [0.247818544581, 12.4628418742, 0.0585558747962, 0.136432723696, 0.3538516185, 0.0523178724517, 0.16811941363]
+>>> numpy.mean(absolute_errors)
+0.25903276740157144
+>>> numpy.mean(squared_error)
+1.925705417407843
