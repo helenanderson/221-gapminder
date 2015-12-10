@@ -10,8 +10,8 @@ import os, pickle, operator
 import country_mappings
 import impute, create_feature_vectors
 
-# This next line creates the feature vectors from scratch with imputation.  To get rid of imputation, pass in False as the first param.  To use latitude and longitude, pass in True as the second param.
-create_feature_vectors.initialize_vectors(True, True)
+# This next line creates the feature vectors from scratch with imputation.  To get rid of imputation, pass in False as the first param.  To use latitude and longitude, pass in True as the second param.  To exclude HIV, pass in False as third param
+create_feature_vectors.initialize_vectors(True, True, False)
 
 feature_vectors = {}
 with open('imputed_feature_vectors.p') as data_file:    
