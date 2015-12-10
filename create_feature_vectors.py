@@ -20,6 +20,13 @@ def create_feature_vectors():
   start_year = 1990
   end_year = 2015
 
+  # Dictionary to store previous years' values of HIV
+  previous_target_values = {} # {2: {()}
+  target_year_memory_count = 3
+  target_year_interval = 1
+  for years_ago in range(target_year_interval, target_year_memory_count*target_year_interval+1, target_year_interval):
+    previous_target_values[years_ago] = defaultdict(lambda: None)
+
   target_wb = load_workbook(filename = "indicator hiv estimated prevalence% 15-49.xlsx")
   target_ws = target_wb['Data']
 
@@ -31,7 +38,12 @@ def create_feature_vectors():
     for cell in row:
       if cell.column != 'A':
         year = int(target_ws[cell.column + '1'].value)
-        target_values[(country, year - forecast_years_out)] = float(cell.value) if cell.value is not None else None
+        target_values[(country, year-forecast_years_out)] = float(cell.value) if cell.value is not None else None
+        for yearsForward in range(target_year_interval, target_year_memory_count*target_year_interval+1, target_year_interval):
+          if year + yearsForward < end_year:
+            previous_target_values[yearsForward][(country, year+yearsForward)] = float(cell.value) if cell.value is not None else None
+
+  featuresToMemoryDict = {'indicator total health expenditure perc of GDP.xlsx': (2, 3)} # : [year interval, number of years to track]
 
   # build feature vectors
   count = 0
@@ -61,6 +73,19 @@ def create_feature_vectors():
                 target = target_values[(country, year)]
                 feature_vectors[(country, year)] = ({'Country': country, 'Year': year}, target)
               feature_vectors[(country, year)][0][feature] = cell.value
+              
+              # Storing the feature as a "past" value for future years
+              if feature in featuresToMemoryDict:
+                interval, count = featuresToMemoryDict[feature]
+                for yearsForward in range(interval, count*interval+1, interval):
+                  if year + yearsForward < end_year - forecast_years_out:
+                    feature_vectors[(country, year+yearsForward)][0][feature + " " + str(yearsForward) + " years ago"] = cell.value
+
+  for years_ago, years_ago_dict in previous_target_values.iteritems():
+    for pair, prevVal in years_ago_dict.iteritems():
+      if feature_vectors.get(pair):
+        if prevVal != None:
+            feature_vectors[pair][0]["HIV " + str(years_ago) + " years ago"] = prevVal
 
   # country_mappings.get_mappings(feature_vectors)
 
