@@ -20,9 +20,19 @@ continents = {
   "South America": ["French Guiana","Venezuela (Bolivarian Republic of)","Argentina","Bolivia","Brazil","Chile","Colombia","Ecuador","Guyana","Paraguay","Peru","Suriname","Uruguay","Venezuela"]
 }
 
+continents_with_african_regions = {
+  "The Rest of Africa": ["Cote D'Ivoire","Mayotte",u"São Tomé and Príncipe","Congo [Republic]","Congo [DRC]",u"Côte d'Ivoire","Western Sahara","Central African Rep.","Congo, Dem. Rep.","Algeria","Benin","Burkina","Burkina Faso","Burundi","Cameroon","Cape Verde","Central African Republic","Chad","Comoros","Congo","Congo, Rep.","Djibouti","Egypt","Equatorial Guinea","Gabon","Gambia","Ghana","Guinea","Guinea-Bissau","Cote d'Ivoire","Liberia","Libya","Mali","Mauritania","Morocco","Namibia","Niger","Nigeria","Sao Tome and Principe","Senegal","Seychelles","Sierra Leone","Somalia","Sudan","Togo","Tunisia"],
+  "East and Southern Africa": ["Eritrea","Ethiopia","South Sudan","Uganda","Kenya","Tanzania","Angola","Zambia","Malawi","Mozambique","Rwanda","Zimbabwe","Botswana","South Africa","Swaziland","Lesotho","Reunion","Madagascar","Mauritius"],
+  "Asia": ["Myanmar [Burma]","Democratic Republic of Timor-Leste","Macao, China","Laos","Libyan Arab Jamahiriya","Korea, Dem. Rep.","Yemen, Rep.","Hong Kong, China","Syrian Arab Republic","Korea, Rep.","West Bank and Gaza","Brunei Darussalam","Timor-Leste","Viet Nam","Taiwan","Afghanistan","Bahrain","Bangladesh","Bhutan","Brunei","Myanmar","Cambodia","China","East Timor","India","Indonesia","Iran","Iraq","Israel","Japan","Jordan","Kazakhstan","North Korea","South Korea","Kuwait","Kyrgyz Republic","Kyrgyzstan","Lao","Lebanon","Malaysia","Maldives","Mongolia","Nepal","Oman","Pakistan","Philippines","Qatar","Russia","Saudi Arabia","Singapore","Sri Lanka","Syria","Tajikistan","Thailand","Turkey","Turkmenistan","United Arab Emirates","Uzbekistan","Vietnam","Yemen"],
+  "Europe": ["Slovak republic","USSR","West Germany","East Germany","Gibraltar","Macedonia [FYROM]","Slovakia","Czech Rep.","Yugoslavia","Czechoslovakia","Serbia and Montenegro","Channel Islands",u"Åland","Greenland","Macedonia, FYR","Russian Federation","Serbia and Montenegro","Albania","Andorra","Armenia","Austria","Azerbaijan","Belarus","Belgium","Bosnia and Herzegovina","Bulgaria","Croatia","Cyprus","Czech Republic","Denmark","Estonia","Finland","France","Georgia","Germany","Greece","Hungary","Iceland","Ireland","Italy","Latvia","Liechtenstein","Lithuania","Luxembourg","Macedonia","Malta","Moldova","Monaco","Montenegro","Netherlands","Norway","Poland","Portugal","Romania","San Marino","Serbia","Slovak Republic","Slovenia","Spain","Sweden","Switzerland","Ukraine","United Kingdom","Vatican City"],
+  "North America": ["Aruba","Virgin Islands (U.S.)","Netherlands Antilles","Guadeloupe","Martinique","St. Kitts and Nevis","Bermuda","British Virgin Islands","Cayman Islands","St. Vincent and the Grenadines","Turks and Caicos Islands","St. Lucia","Dominican Rep.","Anguilla","Montserrat","Puerto Rico","Antigua and Barbuda","Bahamas","Barbados","Belize","Canada","Costa Rica","Cuba","Dominica","Dominican Republic","El Salvador","Grenada","Guatemala","Haiti","Honduras","Jamaica","Mexico","Nicaragua","Panama","Saint Kitts and Nevis","Saint Lucia","Saint Vincent and the Grenadines","Trinidad and Tobago","United States of America","United States"],
+  "Oceania": ["Guam","New Caledonia","Northern Mariana Islands","Tokelau","Cook Islands","Wallis et Futuna","Micronesia, Fed. Sts.","American Samoa","Cook Is","French Polynesia","Niue","Australia","Fiji","Kiribati","Marshall Islands","Micronesia","Nauru","New Zealand","Palau","Papua New Guinea","Samoa","Solomon Islands","Tonga","Tuvalu","Vanuatu"],
+  "South America": ["French Guiana","Venezuela (Bolivarian Republic of)","Argentina","Bolivia","Brazil","Chile","Colombia","Ecuador","Guyana","Paraguay","Peru","Suriname","Uruguay","Venezuela"]
+}
+
 def getRegion(countryName):
-  for region in continents:
-    if countryName in continents[region]:
+  for region in continents_with_african_regions:
+    if countryName in continents_with_african_regions[region]:
       return region
   print "MISMATCH", countryName
 
