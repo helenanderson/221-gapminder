@@ -18,7 +18,7 @@ def create_feature_vectors():
   target_values = defaultdict(lambda: None)
   start_year = 1990
   end_year = 2015
-  forecast_years_ahead = 5
+  forecast_years_ahead = 0
 
   # Dictionary to store previous years' values of HIV
   previous_target_values = {} # {2: {()}
