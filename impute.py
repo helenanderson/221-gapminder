@@ -8,7 +8,7 @@ from sklearn import preprocessing
 from sklearn.metrics import mean_absolute_error, mean_squared_error, median_absolute_error
 import os, pickle, operator
 
-
+# Impute values for featureVectors.p
 def impute(target_name):
   with open('featureVectors.p') as data_file:    
     feature_vectors = pickle.load(data_file)
@@ -17,6 +17,8 @@ def impute(target_name):
   val_arr = []
   real_inputs_arr = []
 
+  # Separate feature vectors into training/test vectors that have the missing value
+  # and "real inputs" to impute once the regression is trained.
   for key, val in feature_vectors.iteritems():
     features, hiv = val
     if hiv is not None: features["HIV rate"] = hiv
@@ -33,7 +35,6 @@ def impute(target_name):
   all_data = vec.fit_transform(all_feature_vectors).toarray()
   feature_names = vec.get_feature_names()
 
-
   data = all_data[:len(feature_vectors_arr)]
   real_data = all_data[len(feature_vectors_arr):]
 
@@ -44,12 +45,10 @@ def impute(target_name):
   target_test = preprocessing.scale(val_arr[partition:])
   real_input_data = preprocessing.scale(real_data)
 
-  # # print training_data[0]
-  # # print target_training
   print "%d in training and %d in test" % (len(target_training), len(target_test))
   print "Feature test len: %d  target test len: %d" % (len(test_data), len(target_test))
 
-  # fit the unweighted model
+  # Fit the unweighted model
   clf = linear_model.SGDRegressor()
   clf.fit(training_data, target_training)
   predictions = clf.predict(test_data)
@@ -58,19 +57,17 @@ def impute(target_name):
   print "Mean absolute error is %f" % mean_absolute_error(target_test, predictions)
   print "Median absolute error is %f" % median_absolute_error(target_test, predictions)
   print "Mean squared error is %f" % mean_squared_error(target_test, predictions)
-
-  print "----AND FINALLY, THE IMPUTATION---"
+  print ""
   imputations = clf.predict(real_input_data)
   output_sd = np.std(val_arr[:partition])
   output_mean = np.mean(val_arr[:partition])
   scaled_imputations = [val * output_sd + output_mean for val in imputations]
   imputed_vals = {}
   for i, features in enumerate(real_inputs_arr):
-    # print "Country: %s, Year: %d, %s: %f"  % (features['Country'], features['Year'], target_name, scaled_imputations[i])
     imputed_vals[(features['Country'], features['Year'], target_name)] = scaled_imputations[i]
   return imputed_vals
 
-
+# Imputes for all the columns listed below.
 def impute_all(imputeHiv):
   all_imputed_vals = {}
   health_spending = impute('indicator total health expenditure perc of GDP.xlsx')
@@ -89,12 +86,9 @@ def impute_all(imputeHiv):
   all_imputed_vals.update(life_expectancy)
   all_imputed_vals.update(hiv)
 
-
-  # Now all the imputing is done, just add back in to feature vector and save in pickle
-
+  # Now all the imputing is done, add back into feature vector and save it
   with open('featureVectors.p') as data_file:    
       feature_vectors_fresh = pickle.load(data_file)
-
   imputed_feature_vectors = {}
   for key, val in feature_vectors_fresh.iteritems():
     features, hiv = val
@@ -114,11 +108,7 @@ def impute_all(imputeHiv):
 
     imputed_feature_vectors[key] = (all_features, hiv)
 
-
-  # print imputed_feature_vectors
   if imputeHiv:
     pickle.dump(imputed_feature_vectors, open('imputed_feature_vectors.p', 'wb'))
   else:
     pickle.dump(imputed_feature_vectors, open('imputed_feature_vectors_no_hiv.p', 'wb'))
-# print all_imputed_vals
-
