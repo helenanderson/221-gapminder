@@ -46,14 +46,9 @@ def create_feature_vectors():
   featuresToMemoryDict = {'indicator total health expenditure perc of GDP.xlsx': (2, 3)} # : [year interval, number of years to track]
 
   # build feature vectors
-  count = 0
   for filename in os.listdir(os.getcwd()):
     if filename.endswith(".xlsx") and not filename.startswith("~$") and not filename == "indicator hiv estimated prevalence% 15-49.xlsx": 
       print filename
-
-      # count += 1
-      # if count > 8:
-      #   break
 
       wb = load_workbook(filename = filename)
 
@@ -87,8 +82,6 @@ def create_feature_vectors():
         if prevVal != None:
             feature_vectors[pair][0]["HIV " + str(years_ago) + " years ago"] = prevVal
 
-  # country_mappings.get_mappings(feature_vectors)
-
   return feature_vectors
 
 def initialize_vectors(shouldImpute=True, useLatLong=False, includeHiv=True):
@@ -98,5 +91,3 @@ def initialize_vectors(shouldImpute=True, useLatLong=False, includeHiv=True):
 	pickle.dump(feature_vectors, open('featureVectors.p', 'wb'))
 	if shouldImpute:
 		impute.impute_all(includeHiv)
-
-
