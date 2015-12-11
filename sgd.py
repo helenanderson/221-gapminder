@@ -8,7 +8,7 @@ from sklearn import preprocessing
 from sklearn.metrics import mean_absolute_error, mean_squared_error, median_absolute_error
 import os, pickle, operator, create_feature_vectors
 
-create_feature_vectors.initialize_vectors(True, False)
+create_feature_vectors.initialize_vectors(True, False, False)
 feature_vectors = {}
 
 # Original Feature Vectors

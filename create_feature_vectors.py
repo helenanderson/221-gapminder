@@ -16,7 +16,7 @@ import impute
 def create_feature_vectors():
   feature_vectors = {}
   target_values = defaultdict(lambda: None)
-  forecast_years_out = 5
+  forecast_years_out = 0  # To move from prediction to forecasting, change this number
   start_year = 1990
   end_year = 2015
 
